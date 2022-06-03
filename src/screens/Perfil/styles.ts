@@ -24,6 +24,14 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: "center",
     fontSize: 20
+  },
+  link: {
+    fontSize: 20,
+  },
+  img: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
   }
 })
 

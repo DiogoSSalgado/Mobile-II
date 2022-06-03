@@ -1,43 +1,45 @@
 import React from "react";
-import { View, Text, ImageBackground, Image, TextInput } from "react-native";
-import CardSocial from "../../components/CardSocial";
+import { Text, Image, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { ButtonComp, CardSocialComp } from "../../components";
 import styles from "./styles";
-import Button from "../../components/Button";
+import { useAuth } from "../../hook/auth";;
 
 export default function Perfil() {
+  const { user } = useAuth();
+  
   return (
     <View>
-      <Text style={styles.title}>Diogo Silva Salgado</Text>
-      <CardSocial>
+      <Image source={{ uri: user?.profile_photo_url }} style={styles.img} />
+      <Text style={styles.title}>{user?.name}</Text>
+      <CardSocialComp>
         <>
           <FontAwesome5 name="facebook" style={styles.icon} />
-          <TextInput placeholder="https://facebook.com" style={styles.input} />
-        </>
-      </CardSocial>
-      <CardSocial>
+          <Text style={styles.link}>https://facebook.com</Text>
+      </>
+      </CardSocialComp>
+      <CardSocialComp>
         <>
           <FontAwesome5 name="instagram" style={styles.icon} />
-          <TextInput placeholder="https://instagram.com" style={styles.input} />
+          <Text style={styles.link}>https://instagram.com</Text>
         </>
-      </CardSocial>
-      <CardSocial>
+      </CardSocialComp>
+      <CardSocialComp>
         <>
           <FontAwesome5 name="linkedin" style={styles.icon} />
-          <TextInput placeholder="https://linkedin.com" style={styles.input} />
+          <Text style={styles.link}>https://linkedin.com</Text>
         </>
-      </CardSocial>
-      <Button
-        title="Salvar"
-        type="third"
-        onPress={() => console.log("Salvar")}
-      />
-      <Button
+      </CardSocialComp>
+      <ButtonComp
         title="Alterar Senha"
         type="third"
         onPress={() => console.log("Alterar Senha")}
       />
-      <Button title="Sair" type="third" onPress={() => console.log("Sair")} />
+      <ButtonComp
+        title="Sair"
+        type="third"
+        onPress={() => console.log("Sair")}
+      />
     </View>
   );
 }
