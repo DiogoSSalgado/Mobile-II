@@ -37,6 +37,7 @@ export default function Login({ navigation }: LoginTypes) {
       const err = error as AxiosError;
       const data = err.response?.data as IUser;
       let message = "";
+      console.log(error);
       if (data.data) {
         for (const [key, value] of Object.entries(data.data)){
           message = `${message} ${value}`;

@@ -9,7 +9,7 @@ const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
 const AuthProvider: React.FC = ({ children }) => {
     const[auth, setAuth] = useState<IAuthState>({} as IAuthState);
 
-    const SignIn = useCallback(async ({email, password}) => {
+    const signIn = useCallback(async ({email, password}) => {
         const response = await apiUser.login({
             email,
             password,
@@ -41,7 +41,7 @@ const AuthProvider: React.FC = ({ children }) => {
         await AsyncStorage.removeItem("user");
     };
 
-    const SignOut = useCallback(async () => {
+    const signOut = useCallback(async () => {
         setAuth({} as IAuthState);
         removeLocalStorage();
         delete api.defaults.headers.common.authorization;
@@ -65,8 +65,8 @@ const AuthProvider: React.FC = ({ children }) => {
     return (
         <AuthContext.Provider
             value={{
-                SignIn,
-                SignOut,
+                signIn,
+                signOut,
                 register,
                 access_token: auth?.access_token,
                 user: auth?.user,
